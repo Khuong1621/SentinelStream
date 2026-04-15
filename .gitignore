@@ -1,0 +1,7 @@
+node_modules/
+dist/
+.env
+*.local.*
+.khuong/*.local.*
+.khuong/settings.json
+.khuong/settings.local.json
