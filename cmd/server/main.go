@@ -7,19 +7,47 @@ import (
 	"net/http"
 	"os"
 	"os/signal"
+	"path/filepath"
 	"syscall"
 	"time"
 )
 
 func main() {
+	port := os.Getenv("PORT")
+	if port == "" {
+		port = "8080"
+	}
+
 	mux := http.NewServeMux()
+
+	// Health check endpoint
 	mux.HandleFunc("/health", func(w http.ResponseWriter, r *http.Request) {
 		w.WriteHeader(http.StatusOK)
 		fmt.Fprintln(w, "OK")
 	})
 
+	// Serve static files from the "dist" directory
+	distPath := "./dist"
+	if _, err := os.Stat(distPath); os.IsNotExist(err) {
+		log.Printf("Warning: %s directory not found. Static files will not be served.", distPath)
+	}
+
+	fs := http.FileServer(http.Dir(distPath))
+
+	// Handle all other requests by serving the frontend
+	mux.HandleFunc("/", func(w http.ResponseWriter, r *http.Request) {
+		path := filepath.Join(distPath, r.URL.Path)
+		_, err := os.Stat(path)
+		if os.IsNotExist(err) {
+			// If file doesn't exist, serve index.html for SPA routing
+			http.ServeFile(w, r, filepath.Join(distPath, "index.html"))
+			return
+		}
+		fs.ServeHTTP(w, r)
+	})
+
 	server := &http.Server{
-		Addr:    ":8080",
+		Addr:    ":" + port,
 		Handler: mux,
 	}
 

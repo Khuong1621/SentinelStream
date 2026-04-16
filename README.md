@@ -1,73 +1,48 @@
-# React + TypeScript + Vite
+# SentinelStream - Tactical Observer Dashboard
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+SentinelStream is a high-performance, real-time telemetry monitoring system for industrial environments.
 
-Currently, two official plugins are available:
+## 🚀 Features
+- **Live Telemetry:** Sector-based command center with real-time throughput analytics.
+- **KPI Monitoring:** Track system uptime, signal rates, and critical incidents at a glance.
+- **Device Grid:** Monitor PLC unit status and versions across your network.
+- **System Logs:** Live-streaming log feed with multi-level severity indicators.
+- **Responsive UI:** Tactical dark-mode interface optimized for both desktop and mobile.
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Oxc](https://oxc.rs)
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/)
+## 🛠️ Tech Stack
+- **Frontend:** React, TypeScript, Vite, Tailwind CSS.
+- **Backend:** Go (Standard Layout).
+- **Icons:** Material Symbols Outlined.
+- **Typography:** Space Grotesk (Headlines), Inter (Body).
 
-## React Compiler
+## 📦 Getting Started
 
-The React Compiler is not enabled on this template because of its impact on dev & build performances. To add it, see [this documentation](https://react.dev/learn/react-compiler/installation).
+### Prerequisites
+- Node.js (v20+)
+- Go (v1.24+)
 
-## Expanding the ESLint configuration
+### Installation
+1. Clone the repository.
+2. Install frontend dependencies:
+   ```bash
+   npm install
+   ```
+3. Build the dashboard:
+   ```bash
+   npm run build
+   ```
+4. Run the Go server:
+   ```bash
+   go run cmd/server/main.go
+   ```
+5. Open `http://localhost:8080` in your browser.
 
-If you are developing a production application, we recommend updating the configuration to enable type-aware lint rules:
+## 🏗️ Project Structure
+- `/cmd/server`: Backend entry point.
+- `/src`: React frontend source code.
+- `/internal`: Private backend logic (Service, Repository, Handler).
+- `/pkg`: Shared backend models and utilities.
+- `/docs`: Architecture, conventions, and UI checklists.
 
-```js
-export default defineConfig([
-  globalIgnores(['dist']),
-  {
-    files: ['**/*.{ts,tsx}'],
-    extends: [
-      // Other configs...
-
-      // Remove tseslint.configs.recommended and replace with this
-      tseslint.configs.recommendedTypeChecked,
-      // Alternatively, use this for stricter rules
-      tseslint.configs.strictTypeChecked,
-      // Optionally, add this for stylistic rules
-      tseslint.configs.stylisticTypeChecked,
-
-      // Other configs...
-    ],
-    languageOptions: {
-      parserOptions: {
-        project: ['./tsconfig.node.json', './tsconfig.app.json'],
-        tsconfigRootDir: import.meta.dirname,
-      },
-      // other options...
-    },
-  },
-])
-```
-
-You can also install [eslint-plugin-react-x](https://github.com/Rel1cx/eslint-react/tree/main/packages/plugins/eslint-plugin-react-x) and [eslint-plugin-react-dom](https://github.com/Rel1cx/eslint-react/tree/main/packages/plugins/eslint-plugin-react-dom) for React-specific lint rules:
-
-```js
-// eslint.config.js
-import reactX from 'eslint-plugin-react-x'
-import reactDom from 'eslint-plugin-react-dom'
-
-export default defineConfig([
-  globalIgnores(['dist']),
-  {
-    files: ['**/*.{ts,tsx}'],
-    extends: [
-      // Other configs...
-      // Enable lint rules for React
-      reactX.configs['recommended-typescript'],
-      // Enable lint rules for React DOM
-      reactDom.configs.recommended,
-    ],
-    languageOptions: {
-      parserOptions: {
-        project: ['./tsconfig.node.json', './tsconfig.app.json'],
-        tsconfigRootDir: import.meta.dirname,
-      },
-      // other options...
-    },
-  },
-])
-```
+## 🚢 Deployment
+The project includes a GitHub Action workflow for automated deployment to Azure Web Apps. Ensure the `AZURE_WEBAPP_PUBLISH_PROFILE` secret is configured in your repository settings.
