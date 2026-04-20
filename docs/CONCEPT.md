@@ -14,6 +14,8 @@
 -   **Đội ngũ bảo trì (Maintenance Teams):** Phân tích log và trạng thái thiết bị để dự đoán hỏng hóc.
 
 ## 🚀 Các tính năng chính (Key Features)
+-   **Mock Data Provider:** Một ứng dụng đi kèm (trong thư mục `mock-provider`) cho phép người dùng giả lập các thiết bị công nghiệp gửi dữ liệu telemetry về hệ thống qua HTTP API (và sẵn sàng cho gRPC). Người dùng có thể tùy chỉnh dữ liệu gửi đi thông qua cấu trúc `DeviceSignal`.
+-   **SentinelSync (Real-time Engine):** Trái tim của hệ thống, sử dụng WebSocket để đồng bộ hóa dữ liệu telemetry và log tức thời từ server xuống client mà không cần refresh trang.
 -   **Dashboard Sector-07:** Giao diện trung tâm với các biểu đồ telemetry động, pulse animation thể hiện sự sống của dòng dữ liệu.
 -   **KPI Bento Grid:** Các chỉ số quan trọng (Uptime, Signal Rate, Critical Incidents) được trình bày rõ ràng, dễ nắm bắt.
 -   **Device Grid Management:** Quản lý danh sách thiết bị PLC, trạng thái kết nối và phiên bản phần mềm.
