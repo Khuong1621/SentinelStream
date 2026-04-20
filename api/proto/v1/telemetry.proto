@@ -1,0 +1,24 @@
+syntax = "proto3";
+
+package telemetry.v1;
+
+option go_package = "github.com/jules/sentinelstream/pkg/api/v1;telemetryv1";
+
+message DeviceSignal {
+    string device_id = 1;
+    double value = 2;
+    int64 timestamp = 3;
+}
+
+message TelemetryRequest {
+    DeviceSignal signal = 1;
+}
+
+message TelemetryResponse {
+    bool success = 1;
+    string message = 2;
+}
+
+service TelemetryService {
+    rpc SendTelemetry(TelemetryRequest) returns (TelemetryResponse);
+}

@@ -18,3 +18,19 @@ We follow the specific format defined in [docs/CONVENTIONS.md](docs/CONVENTIONS.
 2. Describe what has changed.
 3. Attach screenshots or videos of UI changes.
 4. Ensure your code follows the `ARCHITECTURE.md` guidelines.
+
+## 🏗️ Project Structure (Standard Go Layout)
+- `/cmd`: Application entry points (main.go).
+- `/internal`: Private application and library code. Business logic goes here.
+- `/pkg`: Library code that's ok to use by external applications.
+- `/api`: API definitions (e.g., .proto files).
+
+## 💻 Coding Standards
+- **Interface Pollution**: Do not create interfaces before they are actually needed. Follow the mantra: "Accept interfaces, return structs".
+- **Error Handling**: Use explicit error checking. No try-catch. `if err != nil { return err }`.
+- **Concurrency**: Prefer using Channels for communication between Goroutines instead of Shared Memory.
+- **Context**: Every function related to I/O (Database, Network) must receive `ctx context.Context` as its first parameter.
+- **Naming**:
+    - Variable names: `camelCase`.
+    - Exported (Public) names: `PascalCase`.
+    - Package names: Lowercase, short, and singular (e.g., `internal/handler`).
