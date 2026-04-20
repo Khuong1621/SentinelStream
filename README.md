@@ -42,7 +42,7 @@ SentinelStream is a high-performance, real-time telemetry monitoring system for 
 - `/src`: React frontend source code.
 - `/internal`: Private backend logic (Service, Repository, Handler).
 - `/pkg`: Shared backend models and utilities.
-- `/docs`: Architecture, conventions, and UI checklists.
+- `/docs`: Architecture, conventions, UI checklists, and [Product Concept](docs/CONCEPT.md).
 
 ## 🚢 Deployment
 The project includes a GitHub Action workflow for automated deployment to Azure Web Apps. Ensure the `AZURE_WEBAPP_PUBLISH_PROFILE` secret is configured in your repository settings.
